@@ -1,48 +1,38 @@
-# NetTool
+# NetTool 🌐
 
-NetTool is a versatile command-line network utility for diagnostics, security checks, and performance analysis.
+A powerful CLI network utility for diagnostics, security checks, and performance analysis.
 
-## Features
+## ✨ Features
 
-- Ping
-- Port scanning
-- DNS lookup
-- Public IP check
-- Internet speed test
-- WHOIS domain lookup
-- Traceroute
-- DDOS attack detection
-- Network device discovery
-- Remote OS detection
-- Network interface listing
-- Packet capture
+- 🔍 Network Diagnostics (Ping, DNS lookup, Traceroute)
+- 🔒 Security Checks (Port scanning, DDOS detection, OS detection)
+- 📊 Performance Analysis (Speed test, Packet capture)
+- 📡 Network Information (Public IP, WHOIS lookup, Interface listing)
 
-## Installation
+## 🚀 Quick Start
 
-1. Clone this repository:
+1. Clone and install:
    git clone https://github.com/yourusername/nettool.git
-
-2. Install required packages:
+   cd nettool
    pip install -r requirements.txt
 
-## Usage
+2. Run a command:
+   python nettool.py <action> [target] [options]
 
-Run the tool with Python:
+   Example:
+   python nettool.py portscan 192.168.1.1 -p 80 443 8080
 
-python nettool.py [action] [target] [options]
+3. Get help:
+   python nettool.py -h
 
-For example:
-python nettool.py ping example.com
-python nettool.py portscan 192.168.1.1 -p 80 443 8080
-python nettool.py speedtest
+## 📖 Documentation
 
-For more information on available actions and options, run:
-python nettool.py -h
+For detailed usage and examples, visit our [Wiki](https://github.com/yourusername/nettool/wiki).
 
-## License
+## 🛡️ Disclaimer
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Use responsibly. Unauthorized network scanning may be illegal.
 
-## Disclaimer
+## 📄 License
 
-Use this tool responsibly. Unauthorized scanning or testing on networks you don't own or have explicit permission to test may be illegal.
+MIT License - see [LICENSE](LICENSE) for details.
