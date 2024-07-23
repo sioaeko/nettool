@@ -1,6 +1,8 @@
 # NetTool 🌐
 
-![캡처](https://github.com/user-attachments/assets/2760f015-33bd-4ffe-be17-b9da60d50421)
+
+<img src="https://github.com/user-attachments/assets/511cccb6-8858-4df9-82ce-ed6d9e7a61a7" width="50%"></img>
+
 
 A powerful CLI network utility for diagnostics, security checks, and performance analysis.
 
