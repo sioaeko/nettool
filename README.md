@@ -12,7 +12,7 @@ A powerful CLI network utility for diagnostics, security checks, and performance
 ## 🚀 Quick Start
 
 1. Clone and install:
-   git clone https://github.com/yourusername/nettool.git
+   git clone https://github.com/sioaeko/nettool.git
    cd nettool
    pip install -r requirements.txt
 
