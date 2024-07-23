@@ -52,6 +52,11 @@ A powerful CLI network utility for diagnostics, security checks, and performance
     - Purpose: Capture and analyze network packets.
     - Usage: python nettool.py capture -i <interface> -f <filter>
 
+13. 🚨 DDoS Attack Simulation (Internal Use Only)
+    - Purpose: Simulate DDoS attacks in a controlled, internal environment for testing defense mechanisms.
+    - Usage: python nettool.py ddos-sim <target> --type <attack_type> --duration <seconds> --rate <packets_per_second>
+    - WARNING: This feature is for educational and testing purposes only. Use only in isolated, internal networks with explicit permission.
+
 ## 🚀 Quick Start
 
 1. Clone and install:
@@ -71,6 +76,10 @@ A powerful CLI network utility for diagnostics, security checks, and performance
 ## 📖 Documentation
 
 For detailed usage and examples, visit our [Wiki](https://github.com/yourusername/nettool/wiki).
+
+## ⚠️ Important Warning
+
+The DDoS Attack Simulation feature is strictly for internal testing and educational purposes. It must only be used in isolated, controlled environments with explicit authorization. Misuse of this tool can lead to severe legal consequences and network disruptions. Always prioritize ethical considerations and comply with all relevant laws and regulations.
 
 ## 🛡️ Disclaimer
 
